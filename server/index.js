@@ -1,4 +1,5 @@
 var rpc = require('node-json-rpc');
+var movieService = require("./movieService");
 
 var options = {
     // int port of rpc server, default 5080 for http or 5433 for https
@@ -10,33 +11,60 @@ var options = {
     // boolean false to turn rpc checks off, default true
     strict: true,
     headers: {
-        'Access-Control-Allow-Origin':'*',
-        'Access-Control-Allow-Methods':'*',
-        'Access-Control-Allow-Headers':'*',
-      } 
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': '*',
+        'Access-Control-Allow-Headers': '*',
+    }
 };
 
 // Create a server object with options
 var serv = new rpc.Server(options);
 
-// Add your methods
-serv.addMethod('myMethod', function (para, callback) {
+// get all titles
+serv.addMethod('getAllTitles', function (parameter, callback) {
     var error, result;
+    result = movieService.getAllTitles();
 
-    console.log("para:" + JSON.stringify(para));
-    // Add 2 or more parameters together
-    if (para.length === 2) {
-        result = para[0] + para[1];
-    } else if (para.length > 2) {
-        result = 0;
-        para.forEach(function (v, i) {
-            result += v;
-        });
-    } else {
-        error = { code: -32602, message: "Invalid params" };
+    if(!result){
+        error = "something went wrong!";
     }
     callback(error, result);
 });
+
+serv.addMethod('findMovieById', function (parameter, callback) {
+    var error, result;
+
+    if(parameter){
+        result = movieService.findMovieById(parameter[0]); 
+        if(!result){
+            error = "findMovieById: Movie not found";
+        }
+    }
+    callback(error, result);
+});
+
+serv.addMethod('isAvailable', function (parameter, callback) {
+    var error, result;
+
+    if(parameter){
+        result = movieService.isAvailable(parameter[0]);
+    }
+    callback(error, result);
+});
+
+
+serv.addMethod('rentMovieById', function (parameter, callback) {
+    var error, result;
+
+    if(parameter){
+        result = movieService.rentMovieById(parameter[0]); 
+        if(!result){
+            error = "rentMovieById: Movie is not available!";
+        }
+    }
+    callback(error, result);
+});
+
 
 // Start the server
 serv.start(function (error) {
@@ -44,3 +72,4 @@ serv.start(function (error) {
     if (error) throw error;
     else console.log('Server running ...');
 });
+

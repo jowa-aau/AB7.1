@@ -240,10 +240,8 @@ var Server = function (options) {
 
     //set Headers
     if(conf.headers){
-      for(var header in conf.headers){    
-       // console.log(conf.headers[header]);
+      for(var header in conf.headers){
         res.setHeader(header, conf.headers[header]);
-        console.log(res.getHeader(header));
       }
     }
     

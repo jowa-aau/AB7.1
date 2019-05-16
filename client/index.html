@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,8 +8,11 @@
     <title>JSON-RPC-Client</title>
 
     <!-- BOOTSTRAP -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
 
     <!-- JQUERY -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -17,28 +21,62 @@
     <script src="./node_modules/jquery-jsonrpcclient/jquery.jsonrpcclient.js"></script>
 
 </head>
+
 <body>
-    
-        <div class="container-fluid">
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-5">
+            </div>
+            <div class="col-md-2">
+                <h1>Movie DB</h1>
+            </div>
+            <div class="col-md-5">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
                 <div class="row">
-                    <div class="col-md-12">
-                        <div class="row">
-                            <div class="col-md-4">
+                    <!-- nav -->
+                    <div class="col-md-2">
+                        <div class="list-group">
+                            <a id="allTitles" href="#" class="list-group-item list-group-item-action">
+                                Show all titles
+                            </a>
+                            <div id="myMovies" href="#" class="list-group-item">
+                                Order overview:
                             </div>
-                            <div class="col-md-4">
-                                Result:
-                                <div id="server-response"></div>
-                                <hr>
-                                Error:
-                                <div id="server-error"></div>
+                            <div id="server-error" class="list-group-item list-group-item-action" style="top: 10px;">
                             </div>
-                            <div class="col-md-4">
-                            </div>
+
+
                         </div>
+
+                    </div>
+
+                    <!-- respone-->
+                    <div class="col-md-4">
+                        <div id="all">
+                            <ul id="movieList" class="list-group">
+                            </ul>
+                        </div>
+
+
+
+                    </div>
+
+                    <!-- Movie details-->
+                    <div class="col-md-6">
+                        <div id="details" class="position-fixed"></div>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+
+
 
 </body>
 <script src="app.js"></script>
+
 </html>
