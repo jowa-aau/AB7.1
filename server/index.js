@@ -10,6 +10,7 @@ var options = {
     path: '/',
     // boolean false to turn rpc checks off, default true
     strict: true,
+    // set headers
     headers: {
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Methods': '*',
